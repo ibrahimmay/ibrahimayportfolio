@@ -1,0 +1,164 @@
+.loading-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.terminal-container {
+  width: 80%;
+  max-width: 800px;
+  background-color: rgba(26, 26, 26, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.terminal-header {
+  background-color: #2a2a2a;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-buttons span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ff5f56;
+}
+
+.terminal-buttons span:nth-child(2) {
+  background-color: #ffbd2e;
+}
+
+.terminal-buttons span:nth-child(3) {
+  background-color: #27c93f;
+}
+
+.terminal-title {
+  color: #fff;
+  margin-left: 20px;
+  font-family: monospace;
+}
+
+.terminal-content {
+  padding: 20px;
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+}
+
+.final-content {
+  text-align: center;
+  color: #fff;
+}
+
+.cyber-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ff00, transparent);
+  margin: 20px auto;
+  width: 80%;
+}
+
+.name-glitch {
+  font-size: 48px;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: relative;
+  text-shadow: 0 0 10px #00ff00;
+  animation: glitch 1s infinite;
+}
+
+.name-glitch::before,
+.name-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  text-shadow: 0 0 10px #00ff00;
+}
+
+.name-glitch::before {
+  animation: glitch-top 1s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+
+.name-glitch::after {
+  animation: glitch-bottom 1.5s infinite;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+.cyber-subtitle {
+  font-size: 24px;
+  color: #00ff00;
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+
+.bracket {
+  color: #00ff00;
+  margin: 0 10px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-top {
+  0%, 100% { transform: translate(0); }
+  50% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-bottom {
+  0%, 100% { transform: translate(0); }
+  50% { transform: translate(-2px, 2px); }
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+} 

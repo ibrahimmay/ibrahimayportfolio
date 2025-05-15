@@ -1,0 +1,209 @@
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease-in-out;
+  animation: screenEntrance 1.5s ease-out forwards;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+
+@keyframes screenEntrance {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    background: linear-gradient(90deg, #000 0%, transparent 100%);
+  }
+  30% {
+    clip-path: polygon(0 0, 30% 0, 20% 100%, 0 100%);
+    background: linear-gradient(90deg, #000 30%, transparent 100%);
+  }
+  60% {
+    clip-path: polygon(0 0, 60% 0, 50% 100%, 0 100%);
+    background: linear-gradient(90deg, #000 60%, transparent 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    background: #000;
+  }
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+  filter: blur(10px);
+  animation: contentReveal 2s ease-out 0.5s forwards;
+}
+
+@keyframes contentReveal {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateX(-50px) skewX(10deg);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0) skewX(0);
+  }
+}
+
+.loading-bar-container {
+  width: 300px;
+  height: 4px;
+  background: rgba(138, 43, 226, 0.2);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  transform: translateX(-100%);
+  animation: slideIn 0.8s ease-out 1.5s forwards;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.loading-bar {
+  height: 100%;
+  background: #8A2BE2;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  position: relative;
+  box-shadow: 0 0 10px #8A2BE2;
+}
+
+.loading-text {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #8A2BE2;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out 2s forwards;
+}
+
+.name-container {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.loading-name {
+  color: #8A2BE2;
+  font-size: 2.5rem;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: 
+    glow 1.5s ease-in-out infinite alternate,
+    nameReveal 1s ease-out 1.2s forwards;
+  letter-spacing: 1px;
+}
+
+@keyframes nameReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px) skewX(20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) skewX(0);
+  }
+}
+
+.loading-line {
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #8A2BE2, transparent);
+  margin: 15px auto 0;
+  transform: scaleX(0);
+  animation: lineExpand 0.8s ease-out 1.8s forwards;
+}
+
+@keyframes lineExpand {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Particle effect */
+.loading-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 255, 0, 0.15) 10%, transparent 70%);
+  animation: particleWave 2.5s ease-out forwards;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+@keyframes particleWave {
+  0% {
+    transform: translateX(-50%) scale(0.5);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(25%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Sand particles */
+.loading-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 30% 50%, rgba(0, 255, 0, 0.05) 5px, transparent 5px),
+    radial-gradient(circle at 70% 50%, rgba(0, 255, 0, 0.05) 3px, transparent 3px),
+    radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.05) 4px, transparent 4px);
+  background-size: 30px 30px;
+  animation: sandParticles 2s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes sandParticles {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50%) scale(1.2);
+  }
+} 
